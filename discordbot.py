@@ -1,19 +1,18 @@
-from discord.ext import commands
-import os
-import traceback
+import discord
+import os 
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
+client = discord.Client()
 
-@bot.event
-async def on_command_error(ctx, error):
-    await ctx.send(str(error))
+# メッセージ受信時に動作する処理
+@client.event
+async def on_message(message):
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    # 「/n」と発言したら「にゃーん」が返る処理
+    if message.content == '/n':
+        await message.channel.send('にゃーん')
 
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-
-
-bot.run(token)
+client.run(TOKEN)
