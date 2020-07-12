@@ -43,6 +43,11 @@ async def on_message(message):
     #「可愛い」と言うと照れる
     if message.content == '可愛い！' or message.content == 'かわいい！':
         await message.channel.send('( ﻿˶﻿ˆ꒳ˆ˵﻿ )ｴﾍﾍ、褒めても何も出ませんよ！')
+        
+        
+    if message.content.startswith('@ハウリングインフェルノの文人'):
+        await message.channel.send(message.author.mention + 'hello')
+        
  #御籤 
     #「翠、おみくじ引かせて！」って言うとおみくじ引く
     if message.content == 'おみくじ' or message.content == '今日の運勢は？':
