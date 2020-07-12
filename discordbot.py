@@ -24,6 +24,10 @@ async def on_message(message):
     #メッセージ送信者がbotだった場合の無視処理
     if message.author.bot:
             return 
+        
+        #おやすみ
+        channel_bot_test = [channel for channel in client.get_all_channels() if channel.name == 'ようこそ'][0]
+await client.send_message(channel_bot_test, '勝手に喋るよ')
 #会話
  #おはよう
     #「おはよう」と発言したら「おはようございます、(送信したユーザーネーム)様！」と返す処理
