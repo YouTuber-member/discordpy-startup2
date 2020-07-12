@@ -12,14 +12,19 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 #接続に必要なオブジェクトを生成
 client = discord.Client()
 
-
-
-
 #起動時に動作する処理
 @client.event
 async def on_ready():
-    print('Hello World,対話botプログラム「Project-a-noa-」、起動しました')
+    print('Hello World,対話botプログラム「Project-noa-」、起動しました')
 
+    #############s
+    await client.change_presence(activity=discord.Game(name='my game'))
+
+# or, for watching:
+activity = discord.Activity(name='my activity', type=discord.ActivityType.watching)
+await client.change_presence(activity=activity)
+    
+    ###############################################################################
 #メッセージ受信時に動作する処理
 @client.event
 async def on_message(message):
@@ -33,18 +38,6 @@ async def on_message(message):
     respon = random.choice(G_lis)
     if message.content.startswith('おはよ') or message.content == 'ぐっもーにん':
         await message.channel.send('おはようございます、' + message.author.name + 'さん！( ⑉¯ ꇴ ¯⑉ )\n' + respon)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
  #おやすみ
     #「おやすみ」と発言したら「おやすみなさい！」と返す処理
     if message.content.startswith('おやすみ'):
@@ -53,11 +46,6 @@ async def on_message(message):
     #「おわ」でメッセージが終わった場合労う
     if 'おわ' in message.content:
         await message.channel.send('お疲れ様です！∠(｀･ω･´)')	
-        
-           if '?L' in message.content:
-        await message.channel.send('ん？!helpでヘルプが見れるよ')	
- 
-        
  #褒め
     #「可愛い」と言うと照れる
     if message.content == '可愛い！' or message.content == 'かわいい！':
@@ -100,18 +88,10 @@ async def on_message(message):
     lis = ['笑うのは体にいいことなのです！','ꉂꉂ(>ᗜ<*)']
     res = random.choice(lis)
     
-    if (message.content.endswith(('笑','（笑）')) and random.random() > 0.75):
-        await message.channel.send(res)
-        
-        
-        #s
-            lis = ['笑うのは体にいいことなのです！','ꉂꉂ(>ᗜ<*)']
-    res = random.choice(lis)
-    
-    if (message.content.endswith(('w','ｗ')) and random.random() > 0.75):
+    if (message.content.endswith(('笑','w')) and random.random() > 0.75):
         await message.channel.send(res)
  #ほえー
-    li = ['w','ｗ','（笑）']
+    li = ['ほえー','わー','えへっ']
     resp = random.choice(li)
     
     if message.content == 'おはよ':
@@ -119,43 +99,16 @@ async def on_message(message):
     elif (message.content.endswith(('よ','かぁ')) and random.random() < 0.4):
         await message.channel.send(resp)
         
-        #おわ
-    #「おわ」でメッセージが終わった場合労う
-
-            #「翠、おみくじ引かせて！」って言うとおみくじ引く
-    if message.content == 'こんにちは' or message.content == '今日の運勢は？':
-        prob = random.random()
-    
-        if prob < 0.3:
-            await message.channel.send('凶です……外出を控えることをオススメします(  ･᷄ὢ･᷅  )')
-        
-        elif prob < 0.65:
-            await message.channel.send('吉です！何かいい事があるかもですね！')
-        
-        elif prob < 0.71:
-            await message.channel.send('末吉……どれくらい運がいいんでしょうね？•́ω•̀)?')
-        
-        elif prob < 0.76:
-            await message.channel.send('半吉は吉の半分、つまり運がいいのです！')
-        
-        elif prob < 0.80:
-            await message.channel.send('小吉ですね！ちょっと優しくされるかも？')
-        
-        elif prob < 0.83:
-            await message.channel.send('吉の中で1番当たっても微妙に感じられる……つまり末吉なのです( ´･ω･`)')
-       
-        elif prob <= 1.0:
-            await message.channel.send('おめでとうございます！大吉ですよ！(๑>∀<๑)♥')
 
 #ウェルカムメッセージ
 @client.event
 async def on_member_join(member):
-   await client.get_channel(578909248902266883).send(f'ようこそ、**{member.mention}**さん！あなたの訪問を歓迎させていただきます、対話botのハウリングインフェルノと申します！ まだ不完全な状態ですがよろしくお願いします！')
+   await client.get_channel(578909248902266883).send(f'ようこそ、**{member.mention}**さん！あなたの訪問を歓迎させていただきます、対話botのゴキブリと申します！ まだ不完全な状態ですがよろしくお願いします！')
 
 #リムーブメッセージ
 @client.event
 async def on_member_remove(member):
-    await    client.get_channel(578909248902266883).send(f'**{member.name}なんで抜けたんだよおおおおおおおおおおお**')
+    await    client.get_channel(578909248902266883).send(f'**{member.name}が退室しました。またの訪問をお待ちしております！**')
 
 #botの起動とdiscordサーバーへの接続
 client.run(TOKEN)
