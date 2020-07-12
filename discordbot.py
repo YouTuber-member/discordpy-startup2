@@ -17,14 +17,7 @@ client = discord.Client()
 async def on_ready():
     print('Hello World,対話botプログラム「Project-noa-」、起動しました')
 
-    #############s
-    await client.change_presence(activity=discord.Game(name='my game'))
 
-# or, for watching:
-activity = discord.Activity(name='my activity', type=discord.ActivityType.watching)
-await client.change_presence(activity=activity)
-    
-    ###############################################################################
 #メッセージ受信時に動作する処理
 @client.event
 async def on_message(message):
