@@ -1,3 +1,4 @@
+
 #インストールしたdiscord.pyの読み込み
 import discord 
 import os
@@ -17,17 +18,12 @@ client = discord.Client()
 async def on_ready():
     print('Hello World,対話botプログラム「Project-noa-」、起動しました')
 
-
 #メッセージ受信時に動作する処理
 @client.event
 async def on_message(message):
     #メッセージ送信者がbotだった場合の無視処理
     if message.author.bot:
             return 
-        
-        #おやすみ
-        channel_bot_test = [channel for channel in client.get_all_channels() if channel.name == 'ようこそ'][0]
-await client.send_message(channel_bot_test, '勝手に喋るよ')
 #会話
  #おはよう
     #「おはよう」と発言したら「おはようございます、(送信したユーザーネーム)様！」と返す処理
@@ -43,15 +39,18 @@ await client.send_message(channel_bot_test, '勝手に喋るよ')
     #「おわ」でメッセージが終わった場合労う
     if 'おわ' in message.content:
         await message.channel.send('お疲れ様です！∠(｀･ω･´)')	
+        #おわ
+    #「おわ」でメッセージが終わった場合労う
+    if 'こん' in message.content:
+        await message.channel.send('こんにちは**{member.mention}**さん')	
+        #おわ
+    #「おわ」でメッセージが終わった場合労う
+    if 'おわ' in message.content:
+        await message.channel.send('お疲れ様です！∠(｀･ω･´)')	
  #褒め
     #「可愛い」と言うと照れる
     if message.content == '可愛い！' or message.content == 'かわいい！':
         await message.channel.send('( ﻿˶﻿ˆ꒳ˆ˵﻿ )ｴﾍﾍ、褒めても何も出ませんよ！')
-        
-        
-    if message.content.startswith('@ハウリングインフェルノの文人'):
-        await message.channel.send(message.author.mention + 'hello')
-        
  #御籤 
     #「翠、おみくじ引かせて！」って言うとおみくじ引く
     if message.content == 'おみくじ' or message.content == '今日の運勢は？':
@@ -105,7 +104,7 @@ await client.send_message(channel_bot_test, '勝手に喋るよ')
 #ウェルカムメッセージ
 @client.event
 async def on_member_join(member):
-   await client.get_channel(578909248902266883).send(f'ようこそ、**{member.mention}**さん！あなたの訪問を歓迎させていただきます、対話botのゴキブリと申します！ まだ不完全な状態ですがよろしくお願いします！')
+   await client.get_channel(578909248902266883).send(f'ようこそ、**{member.mention}**さん！あなたの訪問を歓迎させていただきます、対話botのノアと申します！ まだ不完全な状態ですがよろしくお願いします！')
 
 #リムーブメッセージ
 @client.event
