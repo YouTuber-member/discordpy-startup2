@@ -7,11 +7,41 @@ import random
 #reライブラリの読み込み
 import re
 
+import time 
+
+
+
 #翠のトークン
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 #接続に必要なオブジェクトを生成
 client = discord.Client()
+
+
+
+
+
+
+from time import 
+time_then = time.monotonic() 
+pinger = await client.send_message(message.channel, '__*`Pinging...`*__') 
+ping = '%.2f' % (1000*(time.monotonic()-time_then)) 
+await client.edit_message(pinger, ':ping_pong: \n **Pong!** __**`' + ping + 'ms`**__') # you can edit this to say whatever you want really. Hope this helps. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #起動時に動作する処理
 @client.event
@@ -34,7 +64,21 @@ async def on_message(message):
  #おやすみ
     #「おやすみ」と発言したら「おやすみなさい！」と返す処理
     if message.content.startswith('おやすみ'):
-        await message.channel.send('おやすみなさい、良い夢を見てくださいね！(｡•̀ᴗ-)✧')	
+        await message.channel.send('おやすみなさい、良い夢を見てくださいね！(｡•̀ᴗ-)✧')
+ #おやすみ
+    #「おやすみ」と発言したら「おやすみなさい！」と返す処理
+    if message.content.startswith('!e help'):
+        await message.channel.send('どもどもヘルプを表示するね\n > 1.YouTubeと打つとエンジェルコア君のYouTubeチャンネルが表示されます')
+        
+        #おわ
+    #「おわ」でメッセージが終わった場合労う
+    if '@@エンジェルBOT!#2005 ' in message.content:
+        await message.channel.send('ハイなんでしょう!e help でヘルプが見れます')	
+        
+         #おわ
+    #「おわ」でメッセージが終わった場合労う
+    if '@695145741391495209' in message.content:
+        await message.channel.send('ハイなんでしょう!e help でヘルプが見れます')	
  #おわ
     #「おわ」でメッセージが終わった場合労う
     if 'おわ' in message.content:
@@ -42,11 +86,20 @@ async def on_message(message):
         #おわ
     #「おわ」でメッセージが終わった場合労う
     if 'こん' in message.content:
-        await message.channel.send('こんにちは**{member.mention}**さん')	
+        await message.channel.send('こんにちは' + message.author.name + 'さん')	
         #おわ
     #「おわ」でメッセージが終わった場合労う
-    if 'おわ' in message.content:
+    if 'お疲れ' in message.content:
         await message.channel.send('お疲れ様です！∠(｀･ω･´)')	
+            #「おわ」でメッセージが終わった場合労う
+    if 'おつかれ' in message.content:
+        await message.channel.send('お疲れぇ')
+                    #「おわ」でメッセージが終わった場合労う
+    if 'you' in message.content:
+        await message.channel.send('https://www.youtube.com/channel/UC3B74ty4c5XXDGqjB_LYHQA')
+                    #「おわ」でメッセージが終わった場合労う
+    if 'You' in message.content:
+        await message.channel.send('https://www.youtube.com/channel/UC3B74ty4c5XXDGqjB_LYHQA')
  #褒め
     #「可愛い」と言うと照れる
     if message.content == '可愛い！' or message.content == 'かわいい！':
@@ -76,6 +129,32 @@ async def on_message(message):
        
         elif prob <= 1.0:
             await message.channel.send('おめでとうございます！大吉ですよ！(๑>∀<๑)♥')
+            
+            
+            #御籤 
+    #「翠、おみくじ引かせて！」って言うとおみくじ引く
+    if message.content == 'さいころ' or message.content == 'サイコロ':
+        prob = random.random()
+    
+        if prob < 0.83:
+            await message.channel.send('1')
+        
+        elif prob < 0.83:
+            await message.channel.send('2')
+        
+        elif prob < 0.83:
+            await message.channel.send('3')
+        
+        elif prob < 0.83:
+            await message.channel.send('4')
+        
+        elif prob < 0.83:
+            await message.channel.send('5')
+        
+        elif prob < 0.83:
+            await message.channel.send('6')
+       
+
  #埋込みメッセージ「議題」
     if '議題作成' in message.content:
         match = re.search(r".*タイトルは(.+)、サブタイトルは(.+)。.*", message.content)
